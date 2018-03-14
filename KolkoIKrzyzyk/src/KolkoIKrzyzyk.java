@@ -11,7 +11,8 @@ public class KolkoIKrzyzyk {
         boolean graAktywna = true;
         String krzyzykGracz = "";
         boolean exit = false;
-       
+        boolean zwyciezcaGracz = false;
+        boolean zwyciezcaKomputer = false;
 //  Wype³niamy tablice 9x9 samymi zerami
         int[][] plansza = new int[3][3];
         for (int i=0; i<plansza.length; i++) {
@@ -89,40 +90,37 @@ public class KolkoIKrzyzyk {
             }
            
 //  Ruch komputera
-            if (wolnePola.length == 0) {
-            	System.out.println("Mamy remis!");
-            	graAktywna = false;
-            	break;
-            }
-            int kolkoKomp = new Random().nextInt(wolnePola.length);
-            String wyborKompa = wolnePola[kolkoKomp];
-            System.out.println("Komputer wybra³: " + wyborKompa);
-            int ruchKompaX = Integer.parseInt(wyborKompa.substring(0, 1));
-            int ruchKompaY = Integer.parseInt(wyborKompa.substring(1, 2));
-            plansza[ruchKompaX][ruchKompaY] = -1;
-            prezentacjaPlanszy[ruchKompaX][ruchKompaY] = "O";
-//  Usuwam z Wolnych pól wybrane przez kompa miejsce
-            for (int i=0; i<wolnePola.length; i++) {
-                if (wolnePola[i].equals(wyborKompa)) {
-                    for (int k=i; k<wolnePola.length; k++) {
-                        if (k<wolnePola.length-1) {
-                            wolnePola[k] = wolnePola[k+1];
-                        }
-                    }
-                    wolnePolaTemp = wolnePola;
-                    wolnePola = new String[wolnePolaTemp.length -1];
-                    for (int j=0; j<wolnePola.length; j++) {
-                        wolnePola[j] = wolnePolaTemp[j];
-                    }
-                }
-            }
-           
-//   Drukujemy plansze w konsoli z wstawoinym przez komputer znakiem O
-            for (int i=0; i<prezentacjaPlanszy.length; i++) {
-                for (int j=0; j<prezentacjaPlanszy.length; j++) {
-                    System.out.print(prezentacjaPlanszy[i][j]);
-                }
-                System.out.println();
+            if (wolnePola.length != 0) {
+	            int kolkoKomp = new Random().nextInt(wolnePola.length);
+	            String wyborKompa = wolnePola[kolkoKomp];
+	            System.out.println("Komputer wybra³: " + wyborKompa);
+	            int ruchKompaX = Integer.parseInt(wyborKompa.substring(0, 1));
+	            int ruchKompaY = Integer.parseInt(wyborKompa.substring(1, 2));
+	            plansza[ruchKompaX][ruchKompaY] = -1;
+	            prezentacjaPlanszy[ruchKompaX][ruchKompaY] = "O";
+	//  Usuwam z Wolnych pól wybrane przez kompa miejsce
+	            for (int i=0; i<wolnePola.length; i++) {
+	                if (wolnePola[i].equals(wyborKompa)) {
+	                    for (int k=i; k<wolnePola.length; k++) {
+	                        if (k<wolnePola.length-1) {
+	                            wolnePola[k] = wolnePola[k+1];
+	                        }
+	                    }
+	                    wolnePolaTemp = wolnePola;
+	                    wolnePola = new String[wolnePolaTemp.length -1];
+	                    for (int j=0; j<wolnePola.length; j++) {
+	                        wolnePola[j] = wolnePolaTemp[j];
+	                    }
+	                }
+	            }
+	           
+	//   Drukujemy plansze w konsoli z wstawoinym przez komputer znakiem O
+	            for (int i=0; i<prezentacjaPlanszy.length; i++) {
+	                for (int j=0; j<prezentacjaPlanszy.length; j++) {
+	                    System.out.print(prezentacjaPlanszy[i][j]);
+	                }
+	                System.out.println();
+	            }
             }
            
 //  Warukni zakonczenia gry
