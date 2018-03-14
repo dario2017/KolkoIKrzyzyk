@@ -32,14 +32,20 @@ public class KolkoIKrzyzyk {
         while (graAktywna) {
             boolean poprawne = false;
             while (!poprawne) {        
-                System.out.println("Podaj Twój ruch (wspó³rzêdne na planszy (np. 12). X: ");
+                System.out.println("Podaj Twój ruch - Plansza ma wiersze i kolumny 0, 1 i 2 \n"
+                		+ "Wspó³rzêdne na planszy wg wzoru: Xxy (np. X12): ");
                 Scanner sc = new Scanner(System.in);
                 krzyzykGracz = sc.nextLine();
-                for (int i=0; i<wolnePola.length; i++) {
-                    if (wolnePola[i].equals(krzyzykGracz)) {
-                        poprawne = true;
-                        break;
-                    }
+                if (!(krzyzykGracz.substring(0, 1).equals("X"))){
+                	System.out.println("B³¹d wprowadzenia. Wpisz X i wspolrzedne na planszy");
+                } else {
+                	krzyzykGracz = krzyzykGracz.substring(1);
+	                for (int i=0; i<wolnePola.length; i++) {
+	                    if (wolnePola[i].equals(krzyzykGracz)) {
+	                        poprawne = true;
+	                        break;
+	                    }
+	                }
                 }
                 if (krzyzykGracz.equals("exit")){
                     poprawne = true;
